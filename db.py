@@ -23,12 +23,13 @@ def insert_url_document_for_whatsApp(url):
         print(f"Inserted document: {doc}")
         return result.inserted_id  # Return the inserted document ID
     except Exception as e:
-        doc = {
-            '_id': 'WhatsApp',  # Ensure _id is unique or allow MongoDB to auto-generate
-            'url': url
-        }
-        result = url_collection.find_one_and_replace(doc,replacement=doc)  # Insert the document
-        print(f"Inserted document: {doc}")
+        result = url_collection.find_one_and_update(
+            {'_id': 'WhatsApp'},                  # Filter: Find document with _id = 'WhatsApp'
+            {'$set': {'url': url}},               # Update: Set the 'url' field to the new value
+            upsert=True,                          # Create the document if it doesn't exist
+            return_document=True                  # Return the updated document
+        )  # Insert the document
+        print(f"Inserted document: {result}")
         return None
     
 
@@ -60,11 +61,12 @@ def insert_url_document_for_telegram(url):
         print(f"Inserted document: {doc}")
         return result.inserted_id  # Return the inserted document ID
     except Exception as e:
-        doc = {
-            '_id': 'telelgram',  # Ensure _id is unique or allow MongoDB to auto-generate
-            'url': url
-        }
-        result = url_collection.find_one_and_replace(doc,replacement=doc)  # Insert the document
+        result = url_collection.find_one_and_update(
+    {'_id': 'telegram'},                  # Filter: Find document with _id = 'WhatsApp'
+    {'$set': {'url': url}},               # Update: Set the 'url' field to the new value
+    upsert=True,                          # Create the document if it doesn't exist
+    return_document=True                  # Return the updated document
+) # Insert the document
         print(f"Inserted document: {doc}")
         return None
     

@@ -33,7 +33,7 @@ async def redirect_telegram():
 
 @app.get("/")
 async def root():
-      return {"message": f"Deployed Succesfully! for { os.getenv("APPTYPE")}"}
+      return {"message": f"Deployed Succesfully! for { os.getenv('APPTYPE')}"}
 
 class UrlRequest(BaseModel):
     url: str
