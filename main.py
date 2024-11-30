@@ -19,14 +19,14 @@ app.add_middleware(
 
 
 @app.get("/whatsApplink")
-async def redirect1():
+async def redirect_to_whatsApp():
     # Redirect to the first URL
     sa= get_url_document_for_whatsApp()
     
     return RedirectResponse(url=f"{get_url_document_for_whatsApp()}")
 
 @app.get("/Telegramlink")
-async def redirect2():
+async def redirect_telegram():
     # Redirect to the second URL
     return RedirectResponse(url=f"{get_url_document_for_telegram}")
 
@@ -40,12 +40,12 @@ class UrlRequest(BaseModel):
 
 
 @app.post("/add/whatsApplink")
-async def redirect2(data: UrlRequest):
+async def add_or_change_whatsApp_link(data: UrlRequest):
     insert_url_document_for_whatsApp(url=data.url)  # Extract URL from request
     return {"message": "URL successfully added"}
 
 
 @app.post("/add/Telegramlink")
-async def redirect2(data: UrlRequest):
+async def add_or_change_telegram_links(data: UrlRequest):
     insert_url_document_for_telegram(url=data.url)  # Extract URL from request
     return {"message": "URL successfully added"}
