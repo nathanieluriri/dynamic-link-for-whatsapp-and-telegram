@@ -28,7 +28,7 @@ async def redirect_to_whatsApp():
 @app.get("/Telegramlink")
 async def redirect_telegram():
     # Redirect to the second URL
-    return RedirectResponse(url=f"{get_url_document_for_telegram}")
+    return RedirectResponse(url=f"{get_url_document_for_telegram()}")
 
 
 @app.get("/")
