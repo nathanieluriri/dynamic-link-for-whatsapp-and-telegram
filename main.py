@@ -30,6 +30,9 @@ async def redirect_telegram():
     # Redirect to the second URL
     return RedirectResponse(url=f"{get_url_document_for_telegram()}")
 
+app.post("/whatsAppChannel")
+async def redirect_whatsApp_channel():
+    return RedirectResponse(url=f"{get_url_document_for_whatsApp()}")
 
 @app.get("/")
 async def root():
@@ -49,3 +52,5 @@ async def add_or_change_whatsApp_link(data: UrlRequest):
 async def add_or_change_telegram_links(data: UrlRequest):
     insert_url_document_for_telegram(url=data.url)  # Extract URL from request
     return {"message": "URL successfully added"}
+
+
