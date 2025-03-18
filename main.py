@@ -62,7 +62,6 @@ class UrlRequest(BaseModel):
 @app.post("/add/whatsApplink")
 async def add_or_change_whatsApp_link(
     data: UrlRequest,
-    username: Annotated[str, Depends(verify_credentials)]
 ):
     insert_url_document_for_whatsApp(url=data.url)
     return {"message": "URL successfully added"}
@@ -70,7 +69,15 @@ async def add_or_change_whatsApp_link(
 @app.post("/add/Telegramlink")
 async def add_or_change_telegram_links(
     data: UrlRequest,
-    username: Annotated[str, Depends(verify_credentials)]
 ):
     insert_url_document_for_telegram(url=data.url)
     return {"message": "URL successfully added"}
+
+@app.get("get/whatsapp-link")
+async def get_whatsapp():
+    return{"link":get_url_document_for_whatsApp()}
+
+
+@app.get("get/telegram-link")
+async def get_telegram():
+    return{"link":get_url_document_for_telegram()}
