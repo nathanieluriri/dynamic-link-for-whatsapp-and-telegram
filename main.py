@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from db import insert_url_document_for_whatsApp, get_url_document_for_whatsApp, get_url_document_for_telegram, insert_url_document_for_telegram
 
-app = FastAPI()
+app = FastAPI(docs_url=None,redoc_url=None)
 security = HTTPBasic()
 
 # Dummy credentials
